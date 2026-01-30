@@ -4,7 +4,9 @@ from django.shortcuts import render
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from students.seraializers import StudentSerializer
 from students.models import Student
+from rest_framework import status
 
 
 
@@ -16,5 +18,5 @@ def studentlist(request):
     s=Student.objects.all()
     if (request.method == 'GET'):
         s=Student.objects.all() #read all student records
-        stu=StudentSerializer(s,many=True)
-        return Response(stu.data,status=status.HTTP_200_OK)
+        stu=StudentSerializer(s,many=True) #serialize these records into json objects
+        return Response(stu.data,status=status.HTTP_200_OK) # sends the response back to Client side with status code 200
