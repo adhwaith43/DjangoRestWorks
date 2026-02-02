@@ -19,3 +19,17 @@ class Studentlist(APIView):
             s.save() # if valid saves the data into table
             return Response(s.data,status=status.HTTP_201_CREATED) # sends created record as response with status code 201
         
+
+from django.http import Http404
+
+class Studentdetail(APIView):
+    def get_object(self,pk):
+        try:
+            return Student.objects.get(pk=pk)
+        except:
+            raise Http404
+        
+    def get(self,request,pk):
+        s=self.get_object(pk)
+        stu=StudentSerializer(s)
+        return Response(stu.data,status=status.HTTP_200_OK)
