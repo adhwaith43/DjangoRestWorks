@@ -52,4 +52,5 @@ def studentdetail(request,pk):
         
     if (request.method =="DELETE"):
         s.delete()
-        return Response({'message':'student record is deleted'},status=status.HTTP_204_NO_CONTENT) 
+        return Response({'message':'student record is deleted'},status=status.HTTP_204_NO_CONTENT)
+     
