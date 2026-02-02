@@ -26,3 +26,20 @@ def studentlist(request):
         if s.is_valid(): # checks whether data is valid or not
             s.save() # if valid saves the data into table
             return Response(s.data,status=status.HTTP_201_CREATED) # sends created record as response with status code 201
+        
+#primary key based 
+#Api for reading a specific record
+
+@api_view(['GET'])
+def studentdetail(request,pk):
+    #First read the student record from the Student Table
+    try:
+        s=Student.objects.get(pk=pk)
+    except:#if student object does not exist
+        return Response({'message':'student does not exist'},status=status.HTTP_404_NOT_FOUND)
+    
+    if (request.method=='GET'): #if the request method coming from client side is get
+
+
+        stu=StudentSerializer(s) #converts the student object into json format
+        return Response(stu.data,status=status.HTTP_200_OK) #send the response back to the client
