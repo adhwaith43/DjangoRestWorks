@@ -54,3 +54,15 @@ def studentdetail(request,pk):
         s.delete()
         return Response({'message':'student record is deleted'},status=status.HTTP_204_NO_CONTENT)
      
+
+## mixins##
+
+from rest_framework import mixins,generics
+
+class Studentlist(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    def get(self,request):
+        return self.list(request)
+    def post(self,request):
+        return self.create(request)
