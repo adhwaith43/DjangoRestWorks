@@ -20,4 +20,5 @@ from students import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('students/',views.studentlist),
+    path('studentdetail/<int:pk>',views.studentdetail),
 ]

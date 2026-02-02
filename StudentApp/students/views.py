@@ -43,3 +43,9 @@ def studentdetail(request,pk):
 
         stu=StudentSerializer(s) #converts the student object into json format
         return Response(stu.data,status=status.HTTP_200_OK) #send the response back to the client
+
+    if (request.method=="PUT"): #if the request is PUT
+        stu=StudentSerializer(s,data=request.data) 
+        if stu.is_valid(): 
+            stu.save() 
+            return Response(stu.data,status=status.HTTP_201_CREATED) 
