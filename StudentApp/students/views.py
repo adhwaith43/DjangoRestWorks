@@ -30,7 +30,7 @@ def studentlist(request):
 #primary key based 
 #Api for reading a specific record
 
-@api_view(['GET'])
+@api_view(['GET','PUT'])
 def studentdetail(request,pk):
     #First read the student record from the Student Table
     try:
