@@ -11,7 +11,7 @@ from rest_framework import status
 
 
 
-#API VIEW reading all student records
+# API VIEW reading all student records
 
 @api_view(['GET','POST'])
 def studentlist(request):
@@ -27,8 +27,8 @@ def studentlist(request):
             s.save() # if valid saves the data into table
             return Response(s.data,status=status.HTTP_201_CREATED) # sends created record as response with status code 201
         
-#primary key based 
-#Api for reading a specific record
+# #primary key based 
+# #Api for reading a specific record
 
 @api_view(['GET','PUT','DELETE'])
 def studentdetail(request,pk):
@@ -55,14 +55,4 @@ def studentdetail(request,pk):
         return Response({'message':'student record is deleted'},status=status.HTTP_204_NO_CONTENT)
      
 
-## mixins##
 
-from rest_framework import mixins,generics
-
-class Studentlist(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
-    def get(self,request):
-        return self.list(request)
-    def post(self,request):
-        return self.create(request)
