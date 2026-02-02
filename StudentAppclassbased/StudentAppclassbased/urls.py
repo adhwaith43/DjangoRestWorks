@@ -19,6 +19,6 @@ from django.urls import path
 from students import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('students/',views.studentlist),
-    path('studentdetail/<int:pk>',views.studentdetail),
+    # path('students/',views.studentlist),
+    # path('studentdetail/<int:pk>',views.studentdetail),
 ]
