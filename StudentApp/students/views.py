@@ -48,4 +48,8 @@ def studentdetail(request,pk):
         stu=StudentSerializer(s,data=request.data) 
         if stu.is_valid(): 
             stu.save() 
-            return Response(stu.data,status=status.HTTP_201_CREATED) 
+            return Response(stu.data,status=status.HTTP_201_CREATED)
+        
+    if (request.method =="DELETE"):
+        s.delete()
+        return Response({'message':'student record is deleted'},status=status.HTTP_204_NO_CONTENT) 
