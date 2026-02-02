@@ -33,3 +33,15 @@ class Studentdetail(APIView):
         s=self.get_object(pk)
         stu=StudentSerializer(s)
         return Response(stu.data,status=status.HTTP_200_OK)
+    
+    def put(self,request,pk):
+        s=self.get_object(pk)
+        stu=StudentSerializer(s,data=request.data)
+        if stu.is_valid(): 
+            stu.save()
+        return Response(stu.data,status=status.HTTP_201_CREATED)
+    
+    def delete(self,request,pk):
+        s=self.get_object(pk)
+        s.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
