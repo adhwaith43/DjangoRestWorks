@@ -49,26 +49,36 @@ from students.models import Student
 
 ## mixins##
 
-from rest_framework import mixins,generics
+# from rest_framework import mixins,generics
 
-class Studentlist(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
+# class Studentlist(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#     def get(self,request):
+#         return self.list(request)
+#     def post(self,request):
+#         return self.create(request)
+    
+# class Studentdetail(mixins.RetrieveModelMixin, 
+#                     mixins.UpdateModelMixin, 
+#                     mixins.DestroyModelMixin, 
+#                     generics.GenericAPIView):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#     def get(self,request,pk):
+#         return self.retrieve(request,pk)
+#     def put(self,request,pk):
+#         return self.update(request,pk)
+#     def delete(self,request,pk):
+#         return self.destroy(request,pk)
+    
+#generics note and code
+from rest_framework import generics
+
+class Booklist(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    def get(self,request):
-        return self.list(request)
-    def post(self,request):
-        return self.create(request)
-    
-class Studentdetail(mixins.RetrieveModelMixin, 
-                    mixins.UpdateModelMixin, 
-                    mixins.DestroyModelMixin, 
-                    generics.GenericAPIView):
+
+class Bookdetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    def get(self,request,pk):
-        return self.retrieve(request,pk)
-    def put(self,request,pk):
-        return self.update(request,pk)
-    def delete(self,request,pk):
-        return self.destroy(request,pk)
-    
