@@ -59,7 +59,7 @@ class Studentlist(mixins.ListModelMixin,mixins.CreateModelMixin,generics.Generic
     def post(self,request):
         return self.create(request)
     
-class Studentdetail(mixins.ListModelMixin,mixins.RetrieveModelMixin, 
+class Studentdetail(mixins.RetrieveModelMixin, 
                     mixins.UpdateModelMixin, 
                     mixins.DestroyModelMixin, 
                     generics.GenericAPIView):
