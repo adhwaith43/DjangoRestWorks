@@ -19,7 +19,8 @@ from django.urls import path
 from books import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('booklist/', views.BookList.as_view())
+    path('booklist/', views.BookList.as_view()),
+    path('bookdetail/<int:pk>/', views.BookDetail.as_view())
 ]
 
 
